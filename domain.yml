@@ -1,0 +1,87 @@
+version: "3.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - country
+  - capital
+  - population
+  - info_capital
+  - info_population
+
+  
+actions:
+  - utter_ask_country
+  - utter_capital
+  - utter_population
+  - utter_submit
+  - utter_greet
+  - utter_happy
+  - utter_iamabot
+  - utter_wrong_value
+  
+forms:
+  form_info_capital:
+    required_slots:
+    - country
+  form_info_population:
+    required_slots:
+    - country
+
+
+entities:
+  - country
+
+slots:
+  country:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: country
+
+      
+  
+responses:
+  utter_greet:
+  - text: "Hey! What do you want to ask about ? capital or population ?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+  
+  utter_wrong_value:
+  - text: "This country is not found ,Pleas re-enter the country"
+  
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  
+  utter_ask_country:
+   - text: "which country you want to ask about it ? "
+  
+  utter_submit:
+  - text: "The country is {country}."   
+  
+  utter_capital:
+   - text: "The capital of {country} is {capital}."
+
+  utter_population:
+   - text: "The population of is {population}."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
